@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import About from "./Components/About";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
+import Products from "./Components/Products";
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
+  const routes = [
+    { path: "/home", element: <div>home</div>, AuthRequired: false },
+    { path: "/about", element: "About", AuthRequired: false },
+    { path: "/product", element: "Product", AuthRequired: true },
+  ];
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Routes>
+        {routes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+        ))}
+        {/* <Route path="/home" element={<div>home</div>} />
+        <Route path="/about" element={<About />} />
+        <Route path="/product" element={<Products />} /> */}
+      </Routes>
     </div>
   );
 }
